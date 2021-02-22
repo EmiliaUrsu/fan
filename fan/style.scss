@@ -1,0 +1,70 @@
+$colordark:#333;
+$colorlight:white;
+$fancolor:orange;
+
+body{
+    background-image: radial-gradient(lighten($colordark,30%),$colordark); 
+    background-size: 100vh 100vw;
+}
+.fan{
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    
+    li{
+        padding: 1em;
+        border: 3px solid darkorange;
+        width: 25em;
+        height: 2em;
+        position: absolute;
+        top: 100px;
+        right: 0;
+        bottom: 0;
+        left: 0;
+        margin: auto;
+        transform-origin: 90%;
+        border-radius: 1em 60% 60% 1em;
+        
+        &::before{
+            content:"";
+            display: block;
+            background-color: rgb(165, 87, 42);
+            width: 1em;
+            height: 1em;
+            position: absolute;
+            right: 10%;
+            top:calc(50% - 0.5em );
+            border-radius: 100%;
+
+        }
+
+        @for $n from 1 to 14 {
+            
+        &:nth-child(#{$n}){
+            background-color:lighten( darken($fancolor,30%),3% * $n);
+            transform: rotate(0deg);
+            box-shadow: 0 0 0.5em 0.25em lighten( $colordark,1% * $n);
+            color: 
+            lighten($colorlight,1% * $n);
+        }
+    }
+    }
+
+    h2,p{
+        margin: 0;
+    
+    }
+
+    &:hover li {
+        @for $n from 1 to 14 {
+            
+            &:nth-child(#{$n}){
+               
+                transform: rotate(105deg  -  $n * 15deg);
+                transition: 2s;
+               
+            }
+        }
+        }
+    }
+   
